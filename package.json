@@ -20,5 +20,8 @@
   "homepage": "https://github.com/ShortVincentMan/bootcamp-project-2025#readme",
   "dependencies": {
     "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "prettier": "^3.6.2"
   }
 }
