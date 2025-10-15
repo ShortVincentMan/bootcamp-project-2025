@@ -454,3 +454,11 @@ form {
   padding: 16px 20px;
   background: #fff;
 }
+
+/* optional */
+#site-nav { border-bottom: 1px solid #eee; background:#222; color:#fff; }
+#site-nav a { color: #fff; text-decoration: none; margin-left: 1rem; }
+#site-nav .brand { font-weight: 700; margin-right: 1rem; }
+#site-nav .nav-inner { max-width: 1100px; margin: 0 auto; padding: .75rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+#site-nav a[aria-current="page"] { text-decoration: underline; }
+
