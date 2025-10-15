@@ -9,12 +9,20 @@ type Blog = {
 
 const blogs: Blog[] = [
     {
+        title: "Cal Poly State University",
+        date: "13 October 2025",
+        description: "Opinion Piece",
+        image: "",
+        imageAlt: "CPSLO",
+        slug: "cpslo",
+    },
+    {
         title: "Learning TypeScript",
         date: "9 October 2025",
         description: "Why I'm Learning TypeScript",
         image: "./images/ts.jpg",
         imageAlt: "",
-        slug: "typescript"
+        slug: "typescript",
     },
     {
         title: "I love my cat",
