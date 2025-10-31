@@ -1,0 +1,165 @@
+/* ---------- Base reset ---------- */
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* ---------- App layout wrappers ---------- */
+/* Apply this to <body> (you already do) */
+.site {
+  min-height: 100svh;      /* fills viewport; use dvh if you prefer */
+  display: flex;
+  flex-direction: column;
+  background-color: azure;
+}
+
+/* Apply this to <main> (you already do) */
+.main {
+  flex: 1;                 /* grows to push footer down on short pages */
+  display: block;
+}
+
+/* Reusable centered page container */
+.page-wrap {
+  max-width: 1100px;
+  margin: 0 auto;          /* centers horizontally */
+  padding: 24px 16px 64px; /* page padding + room above footer */
+}
+
+/* ---------- Headings ---------- */
+.page-title {
+  font-family: monospace;
+  font-size: 42px;
+  margin: 8px 0 24px;
+  text-align: center;
+}
+
+/* ---------- Home page (About + Gallery) ---------- */
+.about {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  padding: 20px;
+  background-color: #f8f8f8;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.about-image { flex: 0 0 300px; }
+.about-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.about-card {
+  position: relative;
+  flex: 1 1 320px;
+  min-width: 320px;
+}
+
+.about-text {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px 20px;
+  background: #fff;
+  overflow: hidden;
+  font-size: 16px;
+  line-height: 1.5;
+}
+.about-text p { margin: 0 0 14px; }
+
+.box-label {
+  position: absolute;
+  top: -0.6em;
+  left: 60px;
+  padding: 0 8px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  background: var(--page-bg, #f8f8f8);
+  z-index: 1;
+}
+
+.about-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+  margin-top: 8px;
+}
+.about-gallery img {
+  display: block;
+  width: 100%;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+@media (max-width: 900px) {
+  .about-image { flex: 1 1 100%; max-width: 420px; }
+  .about-card  { flex: 1 1 100%; }
+}
+
+/* ---------- Portfolio / Projects ---------- */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.project {
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  box-shadow: 0 6px 16px rgba(0,0,0,.06);
+}
+.project-details { padding: 14px 16px 18px; }
+.project-img img,
+.project-img span { display: block; width: 100%; height: auto; }
+.project-name { margin: 10px 0 4px; font-size: 20px; }
+.project-date { color: #666; margin: 0 0 10px; }
+.project-description { margin: 0 0 12px; line-height: 1.6; }
+
+/* ---------- Mantis Blades / Project page helpers ---------- */
+.project-img img {
+  max-width: 500px;
+  border-radius: 3px;
+}
+.step-entry-info {
+  max-width: 600px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-height: 1.5;
+  margin: 0;
+}
+.step-entry-info h2 {
+  text-align: center;
+  max-width: 600px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  hyphens: auto;
+  line-height: 1.5;
+  margin: 0;
+}
+.step-entry-info a { overflow-wrap: anywhere; }
+
+.pictures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.pictures-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  max-width: none;
+  border-radius: 8px;
+}
