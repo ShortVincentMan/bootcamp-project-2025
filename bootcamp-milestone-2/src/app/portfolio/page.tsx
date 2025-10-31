@@ -37,7 +37,7 @@ export default function TrimTabPage() {
             <h2 className="step-entry">Required Program</h2>
             <ul>
               <p className="step-entry-info">
-                <li>Rhino 3D</li>
+                Rhino 3D
               </p>
             </ul>
           </section>
