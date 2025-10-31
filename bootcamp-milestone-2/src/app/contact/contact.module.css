@@ -1,0 +1,37 @@
+.wrap { max-width: 600px; margin: 0 auto; }
+
+.form {
+  width: 100%;
+  background: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 16px 20px;
+}
+
+.label {
+  display: block;
+  margin-bottom: 8px;
+  font-family: monospace, serif;
+  font-weight: 700;
+}
+
+.input, .textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.submit {
+  display: inline-block;
+  background: #1e2020;
+  color: #fff;
+  border: 0;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: monospace;
+  cursor: pointer;
+}
+.submit:hover { background: rgb(36, 94, 255); }

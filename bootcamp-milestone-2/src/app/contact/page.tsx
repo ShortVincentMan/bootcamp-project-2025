@@ -1,26 +1,28 @@
+import styles from "./contact.module.css";
+
 export default function Contact() {
   return (
-    <main>
-      <h1 className="page-title">Contact</h1>
-      <p>Need to reach out?</p>
-      <p>Fill out the following information below!</p>
-      <p>
-        Or email me at{" "}
-        <a href="mailto:vinvyle06@gmail.com">vinvyle06@gmail.com</a>
-      </p>
+    <main className="main">
+      <div className="page-wrap">
+        <h1 className="page-title">Contact</h1>
+        <div className={styles.wrap}>
+          <p>Need to reach out?</p>
+          <p>Fill out the form below, or email <a href="mailto:vinvyle06@gmail.com">vinvyle06@gmail.com</a></p>
 
-      <form id="contact-form">
-        <label htmlFor="name">Name</label>
-        <input type="text" id="name" name="Name" placeholder="Name" />
+          <form id="contact-form" className={styles.form}>
+            <label htmlFor="name" className={styles.label}>Name</label>
+            <input id="name" name="Name" placeholder="Name" className={styles.input} />
 
-        <label htmlFor="email">Email</label>
-        <input type="email" id="email" name="Email" placeholder="Email" />
+            <label htmlFor="email" className={styles.label}>Email</label>
+            <input id="email" type="email" name="Email" placeholder="Email" className={styles.input} />
 
-        <h3>Message</h3>
-        <textarea name="Message" rows={6} />
+            <label htmlFor="message" className={styles.label}>Message</label>
+            <textarea id="message" name="Message" rows={6} className={styles.textarea} />
 
-        <input type="submit" />
-      </form>
+            <button type="submit" className={styles.submit}>Submit</button>
+          </form>
+        </div>
+      </div>
     </main>
   );
 }
