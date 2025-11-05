@@ -2,26 +2,20 @@ import styles from "./blog.module.css";
 import BlogPreview from '../../components/blogPreview';
 import blogs from "../blogData";
 import connectDB from "../../database/db";
-import Blog from "../../database/blogSchema";
+import { getBlogs } from "../../database/blogSchema";
 
-async function getBlogs(){
-    await connectDB()
 
-    try {
-        const blogs = (await Blog.find()).sort({ date: -1}).orFail()
-        return blogs
-    } catch (err) {
-        return null
-    }
-}
 export default async function BlogIndex() {
     const blogs = await getBlogs();
 
     if (!blogs) {
-        return <p>Failed to load blogs</p>;
+        return (
+            <div className={styles.blogContainer}>
+                <h1>Blogs</h1>
+                <p>No blogs found at this moment. Please check again later!</p>
+            </div>
+        );
     }
-
-
     return (
         <main className="main">
             <div className="page-wrap">
