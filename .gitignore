@@ -3,3 +3,6 @@
 node_modules
 /bootcamp-milestone-1
 **/.DS_Store
+/bootcamp-milestone-1
+.env
+**/.env
