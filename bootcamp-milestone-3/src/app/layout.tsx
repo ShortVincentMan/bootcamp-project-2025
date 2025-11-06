@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Navbar from "../components/layout/navbar";
-import Footer from "../components/layout/footer";
+import Navbar from "@/components/layout/navbar";
+import Footer from "@/components/layout/footer";
 
 // Make Geist Mono the default font site-wide
 const geistMono = Geist_Mono({ subsets: ["latin"] });
