@@ -6,11 +6,7 @@ import style from "./blogPreview.module.css";
 export default function BlogPreview(props: Blog) {
   return (
     <article className={style.card}>
-      <Link
-        href={`/blog/${props.slug}`}
-        aria-label={`Read: ${props.title}`}
-        className={style.cardLink}
-      >
+      <Link href={`/blog/${props.slug}`} aria-label={`Read: ${props.title}`} className={style.cardLink}>
         <div className={style.thumb}>
           <Image
             src={props.image}
