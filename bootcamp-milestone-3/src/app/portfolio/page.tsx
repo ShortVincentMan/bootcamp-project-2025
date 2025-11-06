@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from "./portfolio.module.css";
 import BlogPreview from '@/components/blogPreview';
-import projects from "../projectData";
 import connectDB from "@/database/db";
 import { getProjects } from "@/database/projectSchema";
 
@@ -12,7 +11,7 @@ export default async function ProjectIndex() {
     if (!projects) {
         return (
             <div className={styles.blogContainer}>
-                <h1>Projects</h1>
+                <h1>Portfolio</h1>
                 <p>No projects found at this moment. Please check again later!</p>
             </div>
         );

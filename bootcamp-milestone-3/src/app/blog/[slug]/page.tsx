@@ -1,66 +1,61 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import blogs from "../../blogData";
+import styles from "./blog.module.css";
+import { getBlogsBySlug, getBlogs } from "@/database/blogSchema";
+import BlogPreview from "@/components/blogPreview";
 
-type Params = { slug: string };
+const blogs = (await getBlogs()) ?? [];
 
-export default async function BlogPostPage({
-  params,
-}: {
-  params: Promise<Params>;
-}) {
-  const { slug } = await params;              // <-- unwrap the promise
+interface BlogPostProps {
+  params: {
+    slug: string;
+  };
+} 
+
+export default async function BlogPostPage({ params }: BlogPostProps) {
+  const { slug } = params;  
   const post = blogs.find((b) => b.slug === slug);
   if (!post) return notFound();
 
   return (
-    <main style={{ maxWidth: 900, margin: "32px auto", padding: "0 16px" }}>
-      <h1 style={{ marginBottom: 8 }}>{post.title}</h1>
-      <time dateTime={post.date} style={{ opacity: 0.7 }}>
-        {new Date(post.date).toLocaleDateString()}
-      </time>
+    <main className={styles.blogPostContainer}>
+      <article className={styles.blogPost}>
+        <header className={styles.blogHeader}>
+          <h1 className={styles.blogTitle}>{post.title}</h1>
+          <p className={styles.blogDate}>
+            {new Date(post.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})  }
+          </p>
+          <Image
+            src={post.image}
+            alt={post.imageAlt}
+            className={styles.blogImage}
+          />
+        </header>
 
-      <div style={{ marginTop: 16 }}>
-        <Image
-          src={post.image}
-          alt={post.imageAlt}
-          width={1200}
-          height={675}
-          style={{ width: "100%", height: "auto", borderRadius: 8 }}
-          priority
-        />
-      </div>
-
-      <p style={{ marginTop: 16, fontSize: 18, lineHeight: 1.6 }}>
-        {post.description}
-      </p>
-      <article style={{ marginTop: 16, lineHeight: 1.8, fontSize: 18 }}>
-  {post.content
-    .split(/\n\s*\n/) // split on blank lines
-    .map((para, i) => (
-      <p key={i} style={{ margin: "0 0 1rem" }}>{para}</p>
-    ))}
-</article>
+        <div className={styles.blogContent}>
+          <p>{post.content}</p>
+        </div>
+        <footer className={styles.blogFooter}>
+          <p>Written by Vincent Le</p>
+        </footer>
+      </article>
     </main>
   );
 }
 
-
-//Metadata
+//Metadata for each post
 import type { Metadata } from "next";
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<Params>;
-}): Promise<Metadata> {
-  const { slug } = await params;              // <-- unwrap
-  const post = blogs.find((b) => b.slug === slug);
-  if (!post) return { title: "Blog post not found" };
+export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
+  const blog = await getBlogsBySlug(params.slug);
+  if (!blog) {
+    return {
+      title: "Blog post not found",
+    };
+  }
   return {
-    title: `${post.title} • Vincent Le`,
-    description: post.description,
-    
-    
+    title: `${blog.title} • Vincent Le`,
+    description: blog.description,
   };
 }
+

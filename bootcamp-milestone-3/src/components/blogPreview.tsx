@@ -1,13 +1,21 @@
 import Image from "next/image";
-import type { Blog } from "../app/blogData";
 import Link from "next/link";
-import style from "./blogPreview.module.css";
 
-export default function BlogPreview(props: Blog) {
+export type BlogPreviewProps = {
+  title: string;
+  slug: string;
+  date: string;
+  description: string;
+  image: string;
+  imageAlt: string;
+  content: string;
+};
+
+export default function BlogPreview(props: BlogPreviewProps) {
   return (
-    <article className={style.card}>
-      <Link href={`/blog/${props.slug}`} aria-label={`Read: ${props.title}`} className={style.cardLink}>
-        <div className={style.thumb}>
+    <article>
+      <Link href={`/blog/${props.slug}`} aria-label={`Read: ${props.title}`}>
+        <div>
           <Image
             src={props.image}
             alt={props.imageAlt}
@@ -16,10 +24,10 @@ export default function BlogPreview(props: Blog) {
           />
         </div>
 
-        <h3 className={style.title}>{props.title}</h3>
-        <p className={style.desc}>{props.description}</p>
-        <time className={style.date} dateTime={props.date}>
-          {new Date(props.date).toLocaleDateString()}
+        <h3>{props.title}</h3>
+        <p>{props.description}</p>
+        <time dateTime={props.date}>
+          {new Date(props.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}
         </time>
       </Link>
     </article>

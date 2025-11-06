@@ -9,7 +9,7 @@ export type Blog = {
     description: string;
     content: string;
     image: string;
-    image_alt: string;
+    imageAlt: string;
     comments: Comment[];
 };
 
@@ -21,7 +21,7 @@ const blogSchema = new Schema<Blog>({
     description: { type: String, required: true },
     content: { type: String, required: true },
     image: { type: String, required: true },
-    image_alt: { type: String, required: true },
+    imageAlt: { type: String, required: true },
 })
 
 // defining the collection and model
@@ -38,5 +38,17 @@ export async function getBlogs(): Promise<Blog[] | null> {
         return null;
     }
 }
+
+export async function getBlogsBySlug(slug: string): Promise<Blog | null> {
+    await connectDB()
+
+    try {
+        const blog = await Blog.findOne({ slug }).orFail();
+        return blog as unknown as Blog;
+    } catch (err) {
+        console.error(`Error fetching blog with slug ${slug}:`, err)
+        return null;
+    }
+}   
 
 export default Blog;
