@@ -1,6 +1,61 @@
-.grid {
+.gridCard{
+  border: 1px solid #e5e5e5;
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+  transition: transform .12s ease, box-shadow .12s ease;
+  height: 100%;
+  transition: box-shadow 0.3s ease;
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+.gridCardInner{
   display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  align-items: stretch;
+  grid-template-rows: auto auto 1fr auto; /* image, title, desc grows, date */
+  gap: .5rem;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  padding-bottom: .75rem;
+}
+.blogTitle{
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0 .75rem;
+  margin-top: .5rem;
+}
+.blogDate{
+  padding: 0 .75rem;
+  opacity: .7;
+  font-size: .9rem;
+}
+.blogImage{
+  width:min-content;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+.blogImage :global(img) {
+  width: 600px;
+  height: 800px;
+  object-fit: cover;
+  display: block;
+}
+.blogDescription{
+  padding: 0 .75rem;
+  color: #333;
+  /* optional clamp to 3 lines */
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.readMoreLink{
+  color: #1a73e8;
+  text-decoration: none;
+  font-weight: 500;
+  margin-left: 0.75rem;
+  &:hover {
+    text-decoration: underline;
+  }
 }

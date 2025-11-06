@@ -35,19 +35,22 @@ export default async function BlogPage() {
             <h1 className="page-title">Blogs</h1>
             <div className={styles.grid}>
         {previews.map((blog) => (
-          <BlogPreview
-            key={blog.slug}
-            title={blog.title}
-            date={blog.date}
-            description={blog.description}
-            image={blog.image}
-            imageAlt={blog.imageAlt}
-            slug={blog.slug}
-            content={blog.content}
-            />
-            ))}
+            <div key={blog.slug} className={styles.gridCard}>
+            <div className={styles.gridCardInner}>
+                <h2 className={styles.blogTitle}>{blog.title}</h2>
+                <p className={styles.blogDate}>{blog.date}</p>
+                <img
+                    src={blog.image}
+                    alt={blog.imageAlt}
+                    className={styles.blogImage}
+                />
+                <p className={styles.blogDescription}>{blog.description}</p>
+                <a href={`/blog/${blog.slug}`} className={styles.readMoreLink}>Read More</a>
             </div>
             </div>
-            </main>
+        ))}
+            </div>
+            </div>
+            </main> 
     );
 }

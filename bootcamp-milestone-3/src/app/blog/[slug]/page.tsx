@@ -13,9 +13,16 @@ interface BlogPostProps {
 } 
 
 export default async function BlogPostPage({ params }: BlogPostProps) {
-  const { slug } = params;  
-  const post = blogs.find((b) => b.slug === slug);
-  if (!post) return notFound();
+  const post = await getBlogsBySlug(params.slug);
+
+  if (!post) {
+    return(
+      <div className={styles.blogContainer}>
+        <h1>Blog Post Not Found</h1>
+        <p>The blog post you are looking for does not exist.</p>
+      </div>
+    );
+  };
 
   return (
     <main className={styles.blogPostContainer}>
@@ -43,10 +50,21 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
   );
 }
 
+
+export async function generateStaticParams() {
+  const blogs = await getBlogs();
+  if (!blogs) {
+    return [];
+  }
+  return blogs.map((blog) => ({
+    slug: blog.slug,
+  }));
+} 
+
 //Metadata for each post
 import type { Metadata } from "next";
 
-export async function generateMetadata({ params }: BlogPostProps): Promise<Metadata> {
+export async function generateMetadata({ params }: BlogPostProps) {
   const blog = await getBlogsBySlug(params.slug);
   if (!blog) {
     return {
