@@ -6,4 +6,5 @@ node_modules
 /bootcamp-milestone-2
 .env
 **/.env
-.prettierrc
+.prettierrc/
+**/bootcamp-milestone-2/
