@@ -39,11 +39,13 @@ export default async function BlogPage() {
             <div className={styles.gridCardInner}>
                 <h2 className={styles.blogTitle}>{blog.title}</h2>
                 <p className={styles.blogDate}>{blog.date}</p>
+                <a href={`/blog/${blog.slug}`}>
                 <img
                     src={blog.image}
                     alt={blog.imageAlt}
                     className={styles.blogImage}
                 />
+                </a>
                 <p className={styles.blogDescription}>{blog.description}</p>
                 <a href={`/blog/${blog.slug}`} className={styles.readMoreLink}>Read More</a>
             </div>

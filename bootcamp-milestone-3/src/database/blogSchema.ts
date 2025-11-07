@@ -31,7 +31,7 @@ export async function getBlogs(): Promise<Blog[] | null> {
     await connectDB()
 
     try {
-        return await Blog.find().sort({ date: -1 }).lean();
+        return await Blog.find().sort({ date: -1 }).orFail();
     } catch (err) {
         console.error("Error fetching blogs:", err);
         return null;

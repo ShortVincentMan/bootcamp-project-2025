@@ -1,11 +1,10 @@
 .gridCard{
   border: 1px solid #e5e5e5;
   justify-content: center;
-  height: 50vh\%;
   border-radius: 12px;
   background: #fff;
   overflow: hidden;
- 
+  align-content: center;
   transition: transform .12s ease, box-shadow .12s ease;
   
   transition: box-shadow 0.3s ease;
@@ -35,10 +34,15 @@
   font-size: .9rem;
 }
 .blogImage{
-  width:600px;
+  display: flex;
+  flex-wrap:wrap;
+  justify-content: flex-start;
   margin: 0 auto;
-  aspect-ratio: 16 / 9;
   overflow: hidden;
+  &:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+  }
 }
 .blogImage :global(img) {
   width: 600px;

@@ -39,4 +39,22 @@ export async function getProjects(): Promise<Project[] | null> {
     }
 }
 
+export async function getProjectsbyProject(slug: string): Promise<Project | null> {
+    console.log("🔎 getProjectsbyProject called with:", slug);
+    if  (!slug) {
+        console.error("getProjectsbyProject called without slug");
+        return null;
+    }
+
+    await connectDB()
+
+    try {
+        const project = await Project.findOne({ slug }).orFail();
+        return project;
+    } catch (err) {
+        console.error("Error fetching project:", err)
+        return null;
+    }
+}
+
 export default Project;
