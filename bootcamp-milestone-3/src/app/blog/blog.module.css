@@ -1,3 +1,9 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
 .gridCard{
   border: 1px solid #e5e5e5;
   justify-content: center;
@@ -36,21 +42,16 @@
 .blogImage{
   display: flex;
   flex-wrap:wrap;
+  width: 100%;
+  height: 30vh;
   justify-content: flex-start;
-  margin: 0 auto;
-  overflow: hidden;
+  object-fit: cover;
+  border:#333 solid 1px;
+  border-radius: 14px;
   &:hover {
-    transform: scale(1.05);
     transition: transform 0.3s ease;
   }
 }
-.blogImage :global(img) {
-  width: 600px;
-  height: 800px;
-  object-fit: cover;
-  display: block;
-}
-
 
 .blogDescription{
   padding: 0 .75rem;

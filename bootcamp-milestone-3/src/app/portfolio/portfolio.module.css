@@ -1,3 +1,9 @@
+.grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
 .gridCard{
   border: 1px solid #e5e5e5;
   justify-content: center;
@@ -23,8 +29,9 @@
   padding-bottom: .75rem;
 }
 .projectTitle{
-  font-size: 1.1rem;
-  font-weight: 700;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
   padding: 0 .75rem;
   margin-top: .5rem;
 }
@@ -36,21 +43,16 @@
 .projectImage{
   display: flex;
   flex-wrap:wrap;
+  width: 100%;
+  height: 30vh;
   justify-content: flex-start;
-  margin: 0 auto;
-  overflow: hidden;
+  object-fit: cover;
+  border:#333 solid 1px;
+  border-radius: 14px;
   &:hover {
-    transform: scale(1.05);
     transition: transform 0.3s ease;
   }
 }
-.projectImage :global(img) {
-  width: 600px;
-  height: 800px;
-  object-fit: cover;
-  display: block;
-}
-
 
 .projectDescription{
   padding: 0 .75rem;
@@ -61,7 +63,7 @@
   overflow: hidden;
 }
 .readMoreLink{
-  color: #438ae6;
+  color: #1a73e8;
   text-decoration: none;
   font-weight: 500;
   margin-left: 0.75rem;
