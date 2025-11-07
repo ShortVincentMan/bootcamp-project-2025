@@ -31,20 +31,23 @@ export async function getBlogs(): Promise<Blog[] | null> {
     await connectDB()
 
     try {
-        const blogs = await Blog.find().sort({ date: -1 }).orFail();
-        return blogs;
+        return await Blog.find().sort({ date: -1 }).lean();
     } catch (err) {
-        console.error("Error fetching blogs:", err)
+        console.error("Error fetching blogs:", err);
         return null;
     }
 }
 
 export async function getBlogsBySlug(slug: string): Promise<Blog | null> {
-    await connectDB()
+    console.log("🔎 getBlogsBySlug called with:", slug);
+    if  (!slug) {
+        console.error("getBlogsBySlug called without slug");
+        return null;
+    }
+    await connectDB();
 
     try {
-        const blog = await Blog.findOne({ slug }).orFail();
-        return blog as unknown as Blog;
+        return await Blog.findOne({ slug }).orFail();
     } catch (err) {
         console.error(`Error fetching blog with slug ${slug}:`, err)
         return null;

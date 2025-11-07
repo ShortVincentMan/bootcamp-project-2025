@@ -1,21 +1,17 @@
 import Image from "next/image";
-import { notFound } from "next/navigation";
 import styles from "./blog.module.css";
 import { getBlogsBySlug, getBlogs } from "@/database/blogSchema";
-import BlogPreview from "@/components/blogPreview";
 
 const blogs = (await getBlogs()) ?? [];
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-} 
+type Params = Promise<{ slug: string }>;
 
-export default async function BlogPostPage({ params }: BlogPostProps) {
-  const post = await getBlogsBySlug(params.slug);
-
-  if (!post) {
+export default async function BlogPost({ params }: { params: { slug: string } }) {
+  const { slug } = await params;
+  console.log("⛳ slug param:", slug);
+  const blog = await getBlogsBySlug(slug);
+  console.log("📄 blog found?", !!blog);
+  if (!blog) {
     return(
       <div className={styles.blogContainer}>
         <h1>Blog Post Not Found</h1>
@@ -28,20 +24,23 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
     <main className={styles.blogPostContainer}>
       <article className={styles.blogPost}>
         <header className={styles.blogHeader}>
-          <h1 className={styles.blogTitle}>{post.title}</h1>
+          <h1 className={styles.blogTitle}>{blog.title}</h1>
           <p className={styles.blogDate}>
-            {new Date(post.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})  }
+            {new Date(blog.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})  }
           </p>
           <Image
-            src={post.image}
-            alt={post.imageAlt}
+            width={800}
+            height={400}
+            src={blog.image}
+            alt={blog.imageAlt}
             className={styles.blogImage}
           />
         </header>
 
         <div className={styles.blogContent}>
-          <p>{post.content}</p>
+          <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         </div>
+
         <footer className={styles.blogFooter}>
           <p>Written by Vincent Le</p>
         </footer>
@@ -53,27 +52,18 @@ export default async function BlogPostPage({ params }: BlogPostProps) {
 
 export async function generateStaticParams() {
   const blogs = await getBlogs();
-  if (!blogs) {
-    return [];
-  }
+  if (!blogs) return [];
   return blogs.map((blog) => ({
     slug: blog.slug,
   }));
 } 
 
 //Metadata for each post
-import type { Metadata } from "next";
-
-export async function generateMetadata({ params }: BlogPostProps) {
-  const blog = await getBlogsBySlug(params.slug);
-  if (!blog) {
-    return {
-      title: "Blog post not found",
-    };
-  }
-  return {
-    title: `${blog.title} • Vincent Le`,
-    description: blog.description,
-  };
+export async function generateMetadata({ params }: { params: Params  }) {
+  const { slug } = await params;
+  const blog = await getBlogsBySlug(slug);
+  return blog
+    ? { title: `${blog.title} • Vincent Le`, description: blog.description }
+    : { title: "Blog Post Not Found" };
 }
 

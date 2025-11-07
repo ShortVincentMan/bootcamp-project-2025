@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import connectDB from "../../../../database/db"
-import blogSchema from "../../../../database/blogSchema"
+import connectDB from "@/database/db"
+import blogSchema from "@/database/blogSchema"
 
 type IParams = {
     params: {
@@ -8,15 +8,40 @@ type IParams = {
     }
 }
 
-export async function GET(req: NextRequest, { params}: IParams) {
-
-    await connectDB()
-    const { slug } = params
-
+export async function GET() {
     try {
-        const blog = await blogSchema.findOne({ slug }).orFail()
-        return NextResponse.json(blog)
+
+        const connection = await connectDB()
+
+        if (connection) {
+            return NextResponse.json(
+                {
+                    message:"Database connected successfully.",
+                    status: "Connected",
+                    database: connection.connection.name,
+                },
+                { status: 200 }
+            );
+        } else {
+            return NextResponse.json(
+                {
+                    message: "Database connection failed.",
+                    status: "Not Connected",
+                },
+                { status: 500 }
+            );
+        }
     } catch (err) {
-        return NextResponse.json('Blog not found.', { status: 404 })
+        console.error("Database connection error:", err);
+        return NextResponse.json(
+            {
+                message: "Database connection error.",
+                status: "Error",
+                error: err instanceof Error ? err.message : "Unknown error",
+            },
+            { status: 500 }
+        );
     }
 }
+
+
