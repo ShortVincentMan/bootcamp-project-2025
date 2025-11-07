@@ -1,11 +1,28 @@
 /* ---------- Base reset ---------- */
 * { box-sizing: border-box; }
 
+
 html, body {
   margin: 0;
   padding: 0;
   height: 100%;
 }
+
+
+body{ position: relative; margin:0; image-rendering: pixelated; }
+body::before{
+  content:"";
+  position: fixed; inset:0;
+  pointer-events:none;
+  background: image-set(
+    url("/images/quagsire.png") 1x,
+    url("/images/quagsire@2x.png") 2x
+  ) repeat;
+  background-size:128px 128px;
+  opacity:.25;               /* set your “opacity” here */
+  z-index: -1;
+}
+
 
 /* ---------- App layout wrappers ---------- */
 /* Apply this to <body> (you already do) */

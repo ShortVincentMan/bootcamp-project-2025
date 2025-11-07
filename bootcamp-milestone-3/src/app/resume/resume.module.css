@@ -17,4 +17,4 @@
 .entryTitle { font-weight: 700; margin: 6px 0 0; }
 .entryInfo { color: #444; font-weight: 600; }
 
-.points, .courseList, .skillList { margin: 8px 0 0; padding-left: 20px; }
+.points, .courseList, .skillList { margin: 8px 0 0; padding-left: 20px; margin-left: 0px; }

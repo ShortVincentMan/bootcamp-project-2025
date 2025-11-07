@@ -29,10 +29,10 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             {new Date(blog.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})  }
           </p>
           <Image
+            alt={blog.imageAlt}
             width={800}
             height={400}
             src={blog.image}
-            alt={blog.imageAlt}
             className={styles.blogImage}
           />
         </header>

@@ -23,7 +23,7 @@ export default function Resume() {
           {/* Experience */}
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>Experience</h2>
-
+            <div className={styles.sectionBody}>
             <div className={styles.entry}>
               <h3 className={styles.entryTitle}>LevelUp MSP (Managed Service Provider)</h3>
               <div className={styles.entryInfo}>Information Technology Engineering Intern | June 2024 - August 2025</div>
@@ -33,7 +33,6 @@ export default function Resume() {
                 <li>Troubleshot and resolved repair tickets and BSOD issues on Windows computers using root-cause analysis</li>
               </ul>
             </div>
-
             <div className={styles.entry}>
               <h3 className={styles.entryTitle}>PilotCity</h3>
               <div className={styles.entryInfo}>Program Development Intern | May 2024 - October 2024</div>
@@ -43,7 +42,6 @@ export default function Resume() {
                 <li>Modeled wave-resistant building structures with Tssui to test sustainable coastal architectural concepts</li>
               </ul>
             </div>
-
             <div className={styles.entry}>
               <h3 className={styles.entryTitle}>City of Fremont (Aqua Adventure)</h3>
               <div className={styles.entryInfo}>Swim Lesson Lead | May 2022 - August 2025</div>
@@ -52,6 +50,7 @@ export default function Resume() {
                 <li>Designed lesson plans for students with diverse needs, including individuals with disabilities</li>
                 <li>Improved client retention by tailoring personal communications and services to families and guests</li>
               </ul>
+            </div>
             </div>
           </section>
 
