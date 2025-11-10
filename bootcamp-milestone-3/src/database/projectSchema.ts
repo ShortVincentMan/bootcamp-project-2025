@@ -39,10 +39,10 @@ export async function getProjects(): Promise<Project[] | null> {
     }
 }
 
-export async function getProjectsbyProject(slug: string): Promise<Project | null> {
-    console.log("🔎 getProjectsbyProject called with:", slug);
+export async function getProjectsbySlug(slug: string): Promise<Project | null> {
+    console.log("🔎 getProjectsbySlug called with:", slug);
     if  (!slug) {
-        console.error("getProjectsbyProject called without slug");
+        console.error("getProjectsbySlug called without slug");
         return null;
     }
 
