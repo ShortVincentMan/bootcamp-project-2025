@@ -1,7 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import connectDB from "./db";
-import { IComment } from "../components/comment/comment";
-import commentSchema from "./commentSchema";
+import commentSchema, { type IComment } from "./commentSchema";
 
 // typescript type
 export type Blog = {

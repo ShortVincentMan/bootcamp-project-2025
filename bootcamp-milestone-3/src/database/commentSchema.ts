@@ -1,7 +1,12 @@
 //commentSchema.ts
 
-import { Schema } from "mongoose";
-import { IComment } from "@/components/comment/comment";
+import mongoose, { Schema } from "mongoose";
+
+export interface IComment {
+    username: string;
+    content: string;
+    date: Date;
+}
 
 // Mongoose schema for contents
 export const commentSchema = new Schema<IComment>({

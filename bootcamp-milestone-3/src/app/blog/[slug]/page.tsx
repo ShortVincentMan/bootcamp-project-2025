@@ -27,7 +27,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <header className={styles.blogHeader}>
           <h1 className={styles.blogTitle}>{blog.title}</h1>
           <p className={styles.blogDate}>
-            {new Date(blog.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})  }
+            {new Date(blog.date).toLocaleDateString('en-US', {
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric'
+              })  
+            }
           </p>
           <Image
             alt=""
@@ -37,19 +42,17 @@ export default async function BlogPost({ params }: { params: { slug: string } })
             className={styles.blogImage}
           />
         </header>
-
         <div className={styles.blogContent}>
           <div dangerouslySetInnerHTML={{ __html: blog.content }} />
         </div>
-
         <footer className={styles.blogFooter}>
-          <p>Written by Vincent Le</p>
+          <p>Written by <strong>Vincent Le</strong></p>
         </footer>
       </article>
       <div className={styles.commentsSection}>
         <h2 >Comments</h2>
         {!blog.comments || blog.comments.length === 0 ? (
-          <p>No comments yet. Be the first to comment!</p>
+          <p>It's empty here... Please comment!</p>
         ) : (
           blog.comments.map((comment, index) => (
             <Comment key={index} comment={comment} />
@@ -59,23 +62,3 @@ export default async function BlogPost({ params }: { params: { slug: string } })
     </main>
   );
 }
-
-
-export async function generateStaticParams() {
-  const blogs = await getBlogs();
-  if (!blogs) return [];
-  return blogs.map((blog) => ({
-    slug: blog.slug,
-  }));
-} 
-
-
-//Metadata for each post
-export async function generateMetadata({ params }: { params: Params  }) {
-  const { slug } = await params;
-  const blog = await getBlogsBySlug(slug);
-  return blog
-    ? { title: `${blog.title} • Vincent Le`, description: blog.description }
-    : { title: "Blog Post Not Found" };
-}
-

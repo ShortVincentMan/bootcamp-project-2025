@@ -13,10 +13,27 @@ type CommentProps = {
 
 function parseCommentTime(timestamp: Date){
     const date = new Date(timestamp);
-    return date.toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit'});
+
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    const month = months[date.getMonth()];
+    const day = date.getDate();
+    const year = date.getFullYear();
+    let hours = date.getHours();
+    const minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    const minutesStr = minutes < 10 ? '0' + minutes : String(minutes);
+
+    return `${month} ${day}, ${year} at ${hours}:${minutesStr} ${ampm}`;
 }
 
-function Comment({ comment }: CommentProps) {
+export default function Comment ({ comment }: CommentProps) {
     return (
         <div className = {styles.commentContainer}>
             <h4 className={styles.username}>
@@ -26,7 +43,4 @@ function Comment({ comment }: CommentProps) {
             <small className={styles.date}>{parseCommentTime(comment.date)}</small>
         </div>
     )
-}
-
-export default Comment;
-export type { IComment };
+};

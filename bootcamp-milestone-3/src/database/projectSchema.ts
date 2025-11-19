@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import connectDB from "./db";
-import { IComment } from "@/components/comment/comment";
+import { type IComment } from "@/database/commentSchema";
 
 // typescript type
 export type Project = {
