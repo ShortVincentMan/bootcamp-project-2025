@@ -1,5 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import connectDB from "./db";
+import { IComment } from "@/components/comment/comment";
 
 // typescript type
 export type Project = {
@@ -10,9 +11,9 @@ export type Project = {
     content: string;
     image: string;
     image_alt: string;
-    comments: Comment[];
+    comments: IComment[];
 };
-
+ 
 //mongoose schema
 const projectSchema = new Schema<Project>({
     title: { type: String, required: true },

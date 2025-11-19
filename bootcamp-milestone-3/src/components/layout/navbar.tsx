@@ -4,12 +4,10 @@ import Link from "next/link";
 
 export default function Navbar() {
   return (
-    // replace the content inside <header> with your own styles/classes as needed
     <header className={styles.navbar}>
       <h1 className={styles.logo}>
         <Link href="/">Vincent Le's Personal Website</Link>
       </h1>
-
       <nav aria-label="Primary">
         <ul className={styles.navList}>
           <li><Link href="/">Home</Link></li>

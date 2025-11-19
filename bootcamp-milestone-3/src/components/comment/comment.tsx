@@ -1,5 +1,14 @@
+import type IComment from "@/database/commentSchema";   
+import styles from "./comment.module.css";
+
+type IComment = {
+    username: string;
+    content: string;
+    date: Date;
+};
+
 type CommentProps = {
-    comment: Comment;
+    comment: IComment;
 };
 
 function parseCommentTime(timestamp: Date){
@@ -9,14 +18,15 @@ function parseCommentTime(timestamp: Date){
 
 function Comment({ comment }: CommentProps) {
     return (
-        <div>
-            <h4>
+        <div className = {styles.commentContainer}>
+            <h4 className={styles.username}>
                 {comment.username}
             </h4>
-            <p>{comment.content}</p>
-            <small>{parseCommentTime(comment.date)}</small>
+            <p className={styles.content}>{comment.content}</p>
+            <small className={styles.date}>{parseCommentTime(comment.date)}</small>
         </div>
     )
 }
 
 export default Comment;
+export type { IComment };

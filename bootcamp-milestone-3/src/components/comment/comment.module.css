@@ -1,0 +1,23 @@
+.commentContainer {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.username {
+    font-weight: bold;
+}
+
+.content {
+    margin-top: 8px;
+    font-size: 1rem;
+    line-height: 1.4;
+}
+
+.date {
+    font-size: 0.875rem;
+    color: #666;
+    margin-left: 10px;
+}

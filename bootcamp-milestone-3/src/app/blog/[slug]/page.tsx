@@ -1,6 +1,7 @@
 import Image from "next/image";
 import styles from "./blog.module.css";
 import { getBlogsBySlug, getBlogs } from "@/database/blogSchema";
+import Comment from "@/components/comment/comment";
 
 const blogs = (await getBlogs()) ?? [];
 
@@ -45,6 +46,16 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <p>Written by Vincent Le</p>
         </footer>
       </article>
+      <div className={styles.commentsSection}>
+        <h2 >Comments</h2>
+        {!blog.comments || blog.comments.length === 0 ? (
+          <p>No comments yet. Be the first to comment!</p>
+        ) : (
+          blog.comments.map((comment, index) => (
+            <Comment key={index} comment={comment} />
+          ))
+        )}
+      </div>
     </main>
   );
 }
@@ -57,6 +68,7 @@ export async function generateStaticParams() {
     slug: blog.slug,
   }));
 } 
+
 
 //Metadata for each post
 export async function generateMetadata({ params }: { params: Params  }) {

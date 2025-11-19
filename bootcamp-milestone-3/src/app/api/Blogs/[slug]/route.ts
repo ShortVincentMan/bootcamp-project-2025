@@ -5,8 +5,8 @@ import blogSchema from "@/database/blogSchema"
 type IParams = {
     params: {
         slug: string
-    }
-}
+    };
+};
 
 export async function GET() {
     try {

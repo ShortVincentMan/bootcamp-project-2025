@@ -1,5 +1,7 @@
 import mongoose, { Schema } from "mongoose";
 import connectDB from "./db";
+import { IComment } from "../components/comment/comment";
+import commentSchema from "./commentSchema";
 
 // typescript type
 export type Blog = {
@@ -10,10 +12,10 @@ export type Blog = {
     content: string;
     image: string;
     imageAlt: string;
-    comments: Comment[];
+    comments: IComment[];
 };
 
-//mongoose schema
+// mongoose schema
 const blogSchema = new Schema<Blog>({
     title: { type: String, required: true },
     slug: { type: String, required: true },
@@ -22,6 +24,7 @@ const blogSchema = new Schema<Blog>({
     content: { type: String, required: true },
     image: { type: String, required: true },
     imageAlt: { type: String, required: true },
+    comments: { type: [commentSchema], required: true, default: [] },
 })
 
 // defining the collection and model
