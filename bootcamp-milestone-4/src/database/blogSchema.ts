@@ -1,0 +1,70 @@
+import mongoose, { Schema } from "mongoose";
+import connectDB from "./db";
+
+export type IComment = {
+    user: string;
+    content: string;
+    date: Date;
+}
+
+type Blog = {
+    title: string;
+    slug: string;
+    date: Date;
+    description: string; //preview description
+    content: string; // full blog content
+    image: string;
+    imageAlt: string;
+    comments: IComment[]; // array of comments
+};
+
+
+const commentSchema = new Schema<IComment>({
+    user: { type: String, required: true },
+    content: { type: String, required: true },
+    date: { type: Date, required: false, default: Date.now },
+    }, {_id: false}
+);
+
+const blogSchema = new Schema<Blog>({
+    title: { type: String, required: true },
+    slug: { type: String, required: true },
+    date: { type: Date, required: false, default: new Date()},
+    description: { type: String, required: true },
+    content: { type: String, required: true },
+    image: { type: String, required: true },
+    imageAlt: { type: String, required: true },
+    comments: { type: [commentSchema], required: true, default: [] },
+})
+
+// defining the collection and model
+const Blog = mongoose.models['blogs'] || mongoose.model('blogs', blogSchema);
+
+export async function getBlogs(): Promise<Blog[] | null> {
+    await connectDB()
+
+    try {
+        return await Blog.find().sort({ date: -1 }).orFail();
+    } catch (err) {
+        console.error("Error fetching blogs:", err);
+        return null;
+    }
+}
+
+export async function getBlogsBySlug(slug: string): Promise<Blog | null> {
+    console.log("🔎 getBlogsBySlug called with:", slug);
+    if  (!slug) {
+        console.error("getBlogsBySlug called without slug");
+        return null;
+    }
+    await connectDB();
+
+    try {
+        return await Blog.findOne({ slug }).orFail();
+    } catch (err) {
+        console.error(`Error fetching blog with slug ${slug}:`, err)
+        return null;
+    }
+}   
+
+export default Blog;
