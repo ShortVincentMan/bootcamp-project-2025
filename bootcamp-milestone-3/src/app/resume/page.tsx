@@ -1,13 +1,14 @@
 import styles from "./resume.module.css";
+import React from "react";
 
 export default function Resume() {
   return (
     <main className="main">
       <div className="page-wrap">
         <h1 className="page-title">Resume</h1>
-
         <div className={styles.resume}>
-          {/* Education */}
+            <a href="../downloads/Resume_Vincent_Le.pdf" style={{ fontSize: "16px", textAlign: "center", gap: "24px" }}>Download Here</a>
+            {/* Education */}
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>Education</h2>
             <div className={styles.sectionBody}>
@@ -15,6 +16,12 @@ export default function Resume() {
                 <h3 className={styles.entryTitle}>Bachelor of Science in Computer Engineering</h3>
                 <div className={styles.entryInfo}>
                   California Polytechnic State University, San Luis Obispo | Expected Graduation May 2028
+                </div>
+                <div className={styles.entrypoints}>
+                  Recipient of Robert T. Nahas Scholarship (2025) and PG&E Better Together STEM Scholarship (2025)
+                </div>
+                <div className={`${styles.entrypoints}`}>
+                  Relevant Coursework: Data Structures and Algorithms, Object-Oriented Programming, Digital Logic Design
                 </div>
               </div>
             </div>
@@ -26,12 +33,31 @@ export default function Resume() {
             <div className={styles.sectionBody}>
             {/* section */}
             <div className={styles.entry}>
-              <h3 className={styles.entryTitle}>LevelUp MSP (Managed Service Provider)</h3>
-              <div className={styles.entryInfo}>Information Technology Engineering Intern | June 2024 - August 2025</div>
+              <h3 className={styles.entryTitle}>Hack4Impact Cal Poly</h3>
+              <div className={styles.entryInfo}>Software Developer | November 2025 - Present</div>
               <ul className={styles.points}>
-                <li>Deployed network infrastructure (routers, switches, NAS) for SMB clients, improving workflow efficiency</li>
-                <li>Maintained backup systems with Azure, ensuring data security and recovery for 10+ client businesses</li>
-                <li>Troubleshot and resolved repair tickets and BSOD issues on Windows computers using root-cause analysis</li>
+                <li>Built full-stack web apps with Next.js, TypeScript, MongoDB, and React for Hack4Impact bootcamp tools</li>
+                <li>Collaborated in agile teams to deliver scalable backends and responsive UIs for nonprofit organizations</li>
+              </ul>
+            </div>
+            {/* section */}
+            <div className={styles.entry}>
+              <h3 className={styles.entryTitle}>Cal Poly Racing</h3>
+              <div className={styles.entryInfo}>Formula SAE Firmware Developer | September 2025 - Present</div>
+              <ul className={styles.points}>
+                <li>Develop STM32 CANBoard firmware in FreeRTOS, designing task structures and message protocols in C</li>
+                <li>Perform board-level assembly and electrical verification to ensure CAN network reliability and integrity</li>
+                <li>Participated in design reviews and contributed to the overall vehicle architecture</li>
+              </ul>
+            </div>
+            {/* section */}
+            <div className={styles.entry}>
+              <h3 className={styles.entryTitle}>Cold Stone Creamery</h3>
+              <div className={styles.entryInfo}>Store Associate | February 2025 - September 2025 </div>
+              <ul className={styles.points}>
+                <li>Provided exceptional customer service in a fast-paced environment, ensuring a positive experience for all guests</li>
+                <li>Processed cash, card, and mobile transactions via the POS system efficiently w/ minimal errors.</li>
+                <li>Prepared custom orders with precision and adherence to Cold Stone's signature techniques.</li>
               </ul>
             </div>
             {/* section */}
@@ -42,16 +68,6 @@ export default function Resume() {
                 <li>Deployed network infrastructure (routers, switches, NAS) for SMB clients, improving workflow efficiency</li>
                 <li>Maintained backup systems with Azure, ensuring data security and recovery for 10+ client businesses</li>
                 <li>Troubleshot and resolved repair tickets and BSOD issues on Windows computers using root-cause analysis</li>
-              </ul>
-            </div>
-            {/* section */}
-            <div className={styles.entry}>
-              <h3 className={styles.entryTitle}>PilotCity</h3>
-              <div className={styles.entryInfo}>Program Development Intern | May 2024 - October 2024</div>
-              <ul className={styles.points}>
-                <li>Developed and published a Python file cleaner on GitHub, optimizing PC storage efficiency by 30%</li>
-                <li>Pitched project concepts to employers, securing a fellowship with Tssui Design and Research</li>
-                <li>Modeled wave-resistant building structures with Tssui to test sustainable coastal architectural concepts</li>
               </ul>
             </div>
             {/* section */}
@@ -153,7 +169,7 @@ export default function Resume() {
                 <ul className={styles.entryInfo}>
                   <li>Hack4Impact</li>
                   <li>Cal Poly Racing FSAE</li>
-                  <li>Lion Dancing Team</li>
+                  <li > <a href="https://photos.app.goo.gl/81fXMZpfokXdwvAFA">Lion Dancing Team</a></li>
                   <li>Vietnamese Student Association</li>
                   <li>Computer Engineering Society</li>
                 </ul>
@@ -162,7 +178,6 @@ export default function Resume() {
           </section>
         </div>
       </div>
-       <a href="../downloads/Le_Vincent_Resume.pdf" download>Download</a>
     </main>
   );
 }

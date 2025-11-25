@@ -17,7 +17,7 @@ export default function Footer() {
   return (
     <footer className={styles.footer} role="contentinfo">
       <div className={styles.inner}>
-        <div className={styles.brand}>© {year} ShortVincentMan Personal Website</div>
+        <div className={styles.brand}>© {year} ShortVincentMan Personal Website | All rights reserved</div>
         <nav aria-label="Footer" className={styles.nav}>
           {links.map((l) => (
             <Link key={l.href} href={l.href} className={styles.navLink}>

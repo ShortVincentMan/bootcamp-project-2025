@@ -3,10 +3,10 @@
 .footer {
   background: #000;
   color: #fff;
-  border-top: 1px solid #1f1f1f;
   width: 100%;
   font-family: monospace;
-  border-bottom: 10px solid #43d0ec;
+  border-top: 5px solid #43bfec;
+  border-bottom: 5px solid #43bfec;
 }
 
 .inner {

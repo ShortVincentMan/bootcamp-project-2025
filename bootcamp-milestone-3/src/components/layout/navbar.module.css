@@ -6,7 +6,8 @@
   border-bottom: 1px solid #000000;
   background: #000000;
   font-family:monospace;
-  border-top: 10px solid #43d0ec;
+  border-top: 5px solid #43bfec;
+  border-bottom: 7px solid #43bfec;
 }
 
 .logo a {
