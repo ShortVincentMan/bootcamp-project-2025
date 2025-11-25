@@ -1,20 +1,31 @@
 import mongoose, { Schema } from "mongoose";
 import connectDB from "./db";
-import commentSchema, { type IComment } from "./commentSchema";
 
-// typescript type
-export type Blog = {
+export type IComment = {
+    user: string;
+    content: string;
+    date: Date;
+}
+
+type Blog = {
     title: string;
     slug: string;
     date: Date;
-    description: string;
-    content: string;
+    description: string; //preview description
+    content: string; // full blog content
     image: string;
     imageAlt: string;
-    comments: IComment[];
+    comments: IComment[]; // array of comments
 };
 
-// mongoose schema
+
+const commentSchema = new Schema<IComment>({
+    user: { type: String, required: true },
+    content: { type: String, required: true },
+    date: { type: Date, required: false, default: Date.now },
+    }, {_id: false}
+);
+
 const blogSchema = new Schema<Blog>({
     title: { type: String, required: true },
     slug: { type: String, required: true },

@@ -1,6 +1,7 @@
 import styles from "./blog.module.css";
 import BlogPreview, { BlogPreviewProps } from '@/components/blogPreview';
 import { getBlogs as getBlogsFromDB } from "@/database/blogSchema";
+import { Suspense } from "react";
 
 export const dynamic = 'force-dynamic';
 
@@ -29,7 +30,11 @@ export default async function BlogPage() {
         content: blog.content,
     }));
 
+
+    //if blog data exists
     return (
+        <div>
+            <Suspense fallback={<div className={styles.loading}>Loading...</div>}>
         <main className="main">
             <div className="page-wrap">
             <h1 className="page-title">Blogs</h1>
@@ -54,5 +59,7 @@ export default async function BlogPage() {
             </div>
             </div>
             </main> 
+      </Suspense>
+    </div>
     );
 }
