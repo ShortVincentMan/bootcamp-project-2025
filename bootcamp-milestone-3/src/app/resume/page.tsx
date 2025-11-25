@@ -14,7 +14,7 @@ export default function Resume() {
               <div className={styles.entry}>
                 <h3 className={styles.entryTitle}>Bachelor of Science in Computer Engineering</h3>
                 <div className={styles.entryInfo}>
-                  California Polytechnic State University, San Luis Obispo | Expected Graduation May 2029
+                  California Polytechnic State University, San Luis Obispo | Expected Graduation May 2028
                 </div>
               </div>
             </div>
@@ -24,6 +24,7 @@ export default function Resume() {
           <section className={styles.section}>
             <h2 className={styles.sectionTitle}>Experience</h2>
             <div className={styles.sectionBody}>
+            {/* section */}
             <div className={styles.entry}>
               <h3 className={styles.entryTitle}>LevelUp MSP (Managed Service Provider)</h3>
               <div className={styles.entryInfo}>Information Technology Engineering Intern | June 2024 - August 2025</div>
@@ -33,6 +34,17 @@ export default function Resume() {
                 <li>Troubleshot and resolved repair tickets and BSOD issues on Windows computers using root-cause analysis</li>
               </ul>
             </div>
+            {/* section */}
+            <div className={styles.entry}>
+              <h3 className={styles.entryTitle}>LevelUp MSP (Managed Service Provider)</h3>
+              <div className={styles.entryInfo}>Information Technology Engineering Intern | June 2024 - August 2025</div>
+              <ul className={styles.points}>
+                <li>Deployed network infrastructure (routers, switches, NAS) for SMB clients, improving workflow efficiency</li>
+                <li>Maintained backup systems with Azure, ensuring data security and recovery for 10+ client businesses</li>
+                <li>Troubleshot and resolved repair tickets and BSOD issues on Windows computers using root-cause analysis</li>
+              </ul>
+            </div>
+            {/* section */}
             <div className={styles.entry}>
               <h3 className={styles.entryTitle}>PilotCity</h3>
               <div className={styles.entryInfo}>Program Development Intern | May 2024 - October 2024</div>
@@ -42,6 +54,17 @@ export default function Resume() {
                 <li>Modeled wave-resistant building structures with Tssui to test sustainable coastal architectural concepts</li>
               </ul>
             </div>
+            {/* section */}
+            <div className={styles.entry}>
+              <h3 className={styles.entryTitle}>PilotCity</h3>
+              <div className={styles.entryInfo}>Program Development Intern | May 2024 - October 2024</div>
+              <ul className={styles.points}>
+                <li>Developed and published a Python file cleaner on GitHub, optimizing PC storage efficiency by 30%</li>
+                <li>Pitched project concepts to employers, securing a fellowship with Tssui Design and Research</li>
+                <li>Modeled wave-resistant building structures with Tssui to test sustainable coastal architectural concepts</li>
+              </ul>
+            </div>
+            {/* section */}
             <div className={styles.entry}>
               <h3 className={styles.entryTitle}>City of Fremont (Aqua Adventure)</h3>
               <div className={styles.entryInfo}>Swim Lesson Lead | May 2022 - August 2025</div>

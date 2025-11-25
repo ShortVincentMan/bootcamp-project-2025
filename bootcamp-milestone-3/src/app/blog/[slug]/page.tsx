@@ -52,7 +52,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
       <div className={styles.commentsSection}>
         <h2 >Comments</h2>
         {!blog.comments || blog.comments.length === 0 ? (
-          <p>It's empty here... Please comment!</p>
+          <><p>It's empty here... Please comment!</p>
+          <form>
+            <label htmlFor="commentInput" className={styles.commentLabel}>Add a comment:</label>
+            <input type="text" id="commentInput" className={styles.commentInput} />
+            <button type="submit" className={styles.commentButton}>Submit</button>
+          </form></>
         ) : (
           blog.comments.map((comment, index) => (
             <Comment key={index} comment={comment} />

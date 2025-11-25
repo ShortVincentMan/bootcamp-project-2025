@@ -6,6 +6,7 @@
   border-top: 1px solid #1f1f1f;
   width: 100%;
   font-family: monospace;
+  border-bottom: 10px solid #43d0ec;
 }
 
 .inner {

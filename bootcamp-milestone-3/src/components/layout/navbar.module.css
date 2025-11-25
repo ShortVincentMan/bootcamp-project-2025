@@ -2,11 +2,11 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 12px 25px;
+  padding: 5px 25px;
   border-bottom: 1px solid #000000;
   background: #000000;
-  font-family:monospace
-
+  font-family:monospace;
+  border-top: 10px solid #43d0ec;
 }
 
 .logo a {
