@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./blog.module.css";
 import { getBlogsBySlug, getBlogs } from "@/database/blogSchema";
 import Comment from "@/components/comment/comment";
+import CommentForm from "@/components/comment/commentForm";
 
 const blogs = (await getBlogs()) ?? [];
 
@@ -9,9 +10,10 @@ type Params = Promise<{ slug: string }>;
 
 export default async function BlogPost({ params }: { params: { slug: string } }) {
   const { slug } = await params;
-  console.log("⛳ slug param:", slug);
+    console.log("⛳ slug param:", slug);
   const blog = await getBlogsBySlug(slug);
-  console.log("📄 blog found?", !!blog);
+    console.log("📄 blog found?", !!blog);
+
   if (!blog) {
     return(
       <div className={styles.blogContainer}>

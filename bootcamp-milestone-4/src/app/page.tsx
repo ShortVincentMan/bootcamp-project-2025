@@ -24,7 +24,7 @@ export default function Home() {
                 <em>Cal Poly San Luis Obispo</em>. I have a passion for building
                 innovative, hands-on projects that bridges hardware and software.
                 I also love playing video games <em>(Fallout, Terraria, Dark Souls,
-                and Cyberpunk)</em>, working out, wrestling, and listening alt rock.
+                and Cyberpunk)</em>, working out, wrestling, and listening to alt rock.
               </p>
 
               <p>
