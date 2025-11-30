@@ -52,21 +52,20 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         </footer>
       </article>
       <div className={styles.commentsSection}>
-        <h2 >Comments</h2>
+        <h2 >Comments ({blog.comments?.length || 0}) </h2>
         {Array.isArray(blog.comments) && blog.comments.length > 0 ? (
-          blog.comments.map((comment, index) => {
-            return(
-            <Comment key={index} comment={comment} />
-          )})
+          <div className={styles.commentsList}>
+            {blog.comments.map((comment, index) => {
+              return(
+                <Comment key={index} comment={comment} />
+              )
+            })}
+          </div>
         ) : (
-          <><p>It's empty here... Please comment!</p>
-          <form>
-            <label htmlFor="commentInput" className={styles.commentLabel}>Add a comment:</label>
-            <input type="text" id="commentInput" className={styles.commentInput} />
-            <button type="submit" className={styles.commentButton}>Submit</button>
-          </form></>
-
-        )}
+          <p className={styles.noComments}>It's empty here... Please comment!</p>
+          )}
+        <h3>Add a Comment</h3>
+        <CommentForm slug={blog.slug}/>
       </div>
     </main>
   );
