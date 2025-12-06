@@ -21,17 +21,6 @@ export default async function ProjectIndex() {
         return <main className="p-6">No projects found</main>;
     }
 
-    const previews: BlogPreviewProps[] = projects.map((project) => ({
-        title: project.title,
-        date: project.date.toLocaleDateString(),
-        description: project.description,
-        image: project.image,
-        imageAlt: project.image_alt,
-        slug: project.slug,
-        content: project.content,
-    }));
-
-/* Displays website code right here ! */
     return (
         <main className="main">
             <div className="page-wrap">

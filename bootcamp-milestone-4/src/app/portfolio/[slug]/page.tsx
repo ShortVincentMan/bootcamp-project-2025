@@ -46,7 +46,6 @@ export default async function ProjectPost({ params }: { params: { slug: string }
             project.section.map((section, index) => (
               <section key={index} className={styles.projectSection}>
                 <h2>{section.heading}</h2>
-
                 {section.image && (
                   <div className={styles.sectionImageWrapper}>
                   <Image
