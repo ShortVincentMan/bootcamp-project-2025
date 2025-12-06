@@ -3,13 +3,14 @@
 import { useState } from "react";
 import React from "react";
 import styles from "./commentForm.module.css";
+import { getBlogsBySlug } from "@/database/blogSchema";
 
 type CommentFormProps = {
-    slug: string;
-    apiPath?: string;
+    blogSlug?: string;
+    projectSlug?: string;
 };
 
-export default function CommentForm({ slug, apiPath = "Blogs" }: CommentFormProps) {
+export default function CommentForm({ blogSlug, projectSlug }: CommentFormProps) {
     const [ user, setUser] = useState("");
     const [ content, setContent] = useState("");
     const [ isSubmitting, setIsSubmitting] = useState(false);
@@ -19,17 +20,21 @@ export default function CommentForm({ slug, apiPath = "Blogs" }: CommentFormProp
         e.preventDefault();
         setIsSubmitting(true);
         setMessage("");
-        
+
+    const endpoint = blogSlug
+    ? `/api/Blogs/${blogSlug}/comment`
+    : `/api/portfolio/${projectSlug}/comment`;
+
         try {
-            const response = await fetch(`/api/${apiPath}/${slug}/comment`, {
+            const response = await fetch(endpoint, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({ user, content }),
             });
+
             const data = await response.json();
-            
             if (response.ok) {
                 setMessage("Comment submitted successfully!");
                 setUser("");

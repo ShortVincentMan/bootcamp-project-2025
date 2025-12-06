@@ -65,7 +65,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <p className={styles.noComments}>It's empty here... Please comment!</p>
           )}
         <h3>Add a Comment</h3>
-        <CommentForm slug={blog.slug}/>
+        <CommentForm blogSlug={slug}/>
       </div>
     </main>
   );

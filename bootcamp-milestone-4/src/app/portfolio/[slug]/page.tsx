@@ -83,7 +83,7 @@ export default async function ProjectPost({ params }: { params: { slug: string }
           <p className={styles.noComments}>It's empty here... Please comment!</p>
           )}
         <h3>Add a Comment</h3>
-        <CommentForm slug={project.slug} apiPath="portfolio"/>
+        <CommentForm projectSlug={slug} />
       </div>
     </main>
   );
