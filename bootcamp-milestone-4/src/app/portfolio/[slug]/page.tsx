@@ -1,13 +1,12 @@
 import Image from "next/image";
 import styles from "./project.module.css";
 import { getProjectsbySlug, getProjects } from "@/database/projectSchema";
-import { getBlogsBySlug } from "@/database/blogSchema";
-
-const project = (await getProjects()) ?? [];
+import Comment from "@/components/comment/comment";
+import CommentForm from "@/components/comment/commentForm";
 
 type Params = Promise<{ slug: string }>;
 
-export default async function BlogPost({ params }: { params: { slug: string } }) {
+export default async function ProjectPost({ params }: { params: { slug: string } }) {
   const { slug } = await params;
   console.log("⛳ slug param:", slug);
   const project = await getProjectsbySlug(slug);
@@ -27,7 +26,12 @@ export default async function BlogPost({ params }: { params: { slug: string } })
         <header className={styles.projectHeader}>
           <h1 className={styles.projectTitle}>{project.title}</h1>
           <p className={styles.projectDate}>
-            {new Date(project.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})  }
+            {new Date(project.date).toLocaleDateString('en-US', {
+              year: 'numeric', 
+              month: 'long', 
+              day: 'numeric'
+              })  
+            }
           </p>
           <Image
             alt=""
@@ -46,6 +50,22 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           <p>Written by Vincent Le</p>
         </footer>
       </article>
+      <div className={styles.commentsSection}>
+        <h2 >Comments ({project.comments?.length || 0}) </h2>
+        {Array.isArray(project.comments) && project.comments.length > 0 ? (
+          <div className={styles.commentsList}>
+            {project.comments.map((comment, index) => {
+              return(
+                <Comment key={index} comment={comment} />
+              )
+            })}
+          </div>
+        ) : (
+          <p className={styles.noComments}>It's empty here... Please comment!</p>
+          )}
+        <h3>Add a Comment</h3>
+        <CommentForm slug={project.slug} apiPath="portfolio"/>
+      </div>
     </main>
   );
 }

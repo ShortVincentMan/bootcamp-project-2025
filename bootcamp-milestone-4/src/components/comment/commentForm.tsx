@@ -6,9 +6,10 @@ import styles from "./commentForm.module.css";
 
 type CommentFormProps = {
     slug: string;
+    apiPath?: string;
 };
 
-export default function CommentForm({ slug }: CommentFormProps) {
+export default function CommentForm({ slug, apiPath = "Blogs" }: CommentFormProps) {
     const [ user, setUser] = useState("");
     const [ content, setContent] = useState("");
     const [ isSubmitting, setIsSubmitting] = useState(false);
@@ -20,7 +21,7 @@ export default function CommentForm({ slug }: CommentFormProps) {
         setMessage("");
         
         try {
-            const response = await fetch(`/api/Blogs/${slug}/comment`, {
+            const response = await fetch(`/api/${apiPath}/${slug}/comment`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
