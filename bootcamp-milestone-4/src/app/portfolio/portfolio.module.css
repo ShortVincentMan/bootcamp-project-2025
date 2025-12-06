@@ -65,7 +65,6 @@
   line-height: 1.6;
   flex: 1; /* Takes up available space, pushing Read More to bottom */
   
-  /* Clamp to 4 lines to prevent huge gaps */
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical;
