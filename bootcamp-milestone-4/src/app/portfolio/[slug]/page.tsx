@@ -41,15 +41,35 @@ export default async function ProjectPost({ params }: { params: { slug: string }
             className={styles.projectImage}
           />
         </header>
-
         <div className={styles.projectContent}>
-          <div dangerouslySetInnerHTML={{ __html: project.content }} />
-        </div>
+          {project.section?.length > 0 ? (
+            project.section.map((section, index) => (
+              <section key={index} className={styles.projectSection}>
+                <h2>{section.heading}</h2>
 
+                {section.image && (
+                  <div className={styles.sectionImageWrapper}>
+                  <Image
+                  src={section.image}
+                  alt={section.imageAlt || section.heading}
+                  width={600}
+                  height={400}
+                  className={styles.sectionImage}
+                  />
+                  </div>
+                )}
+                <p>{section.content}</p>
+              </section>
+            ))
+          ) : (
+            <p>No sections found</p>
+          )}
+        </div>
         <footer className={styles.projectFooter}>
           <p>Written by Vincent Le</p>
         </footer>
       </article>
+      {/* Comment Section*/}
       <div className={styles.commentsSection}>
         <h2 >Comments ({project.comments?.length || 0}) </h2>
         {Array.isArray(project.comments) && project.comments.length > 0 ? (

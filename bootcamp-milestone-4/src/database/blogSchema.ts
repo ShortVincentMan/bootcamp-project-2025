@@ -19,7 +19,7 @@ type Blog = {
 };
 
 
-const commentSchema = new Schema<IComment>({
+export const commentSchema = new Schema<IComment>({
     user: { type: String, required: true },
     content: { type: String, required: true },
     date: { type: Date, required: false, default: Date.now },

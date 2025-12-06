@@ -1,11 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 import connectDB from "./db";
-
-export type IComment = {
-    user: string;
-    content: string;
-    date: Date;
-}
+import { IComment, commentSchema } from "./blogSchema"
 
 // typescript type
 export type Project = {
@@ -13,18 +8,25 @@ export type Project = {
     slug: string;
     date: Date;
     description: string;
-    content: string;
     image: string;
     image_alt: string;
     comments: IComment[];
+    section: IProjectSection[];
 };
 
-const commentSchema = new Schema<IComment>({
-    user: { type: String, required: true },
-    content: { type: String, required: true },
-    date: { type: Date, required: false, default: Date.now },
-    }, {_id: false}
-);
+export type IProjectSection = {
+    heading: string;
+    image?: string;
+    imageAlt?: string;
+    content: string;
+};
+
+const projectSectionSchema = new Schema<IProjectSection>({
+  heading: { type: String, required: true },
+  image: { type: String, required: false },
+  imageAlt: {type: String, required: false },
+  content: { type: String, required: true },
+}, { _id: false });
  
 //mongoose schema
 const projectSchema = new Schema<Project>({
@@ -32,10 +34,11 @@ const projectSchema = new Schema<Project>({
     slug: { type: String, required: true },
     date: { type: Date, required: false, default: new Date()},
     description: { type: String, required: true },
-    content: { type: String, required: true },
+    // content: { type: String, required: true }
     image: { type: String, required: true },
     image_alt: { type: String, required: true },
     comments: { type: [commentSchema], required: true, default: [] },
+    section: { type: [projectSectionSchema], required: true},
 })
 
 // defining the collection and model

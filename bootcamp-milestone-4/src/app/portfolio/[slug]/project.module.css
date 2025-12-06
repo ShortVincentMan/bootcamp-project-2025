@@ -40,6 +40,30 @@
     font-size: 1.125rem;
     line-height: 1.6;
 }
+
+.projectSection {
+    margin-bottom: 2.5rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.projectSection last-child {
+    border-bottom: none;
+}
+
+.projectSection h2 {
+    font-size: 1.75rem;
+    color:#0051cc;
+    margin-bottom: 1rem;
+}
+
+.projectSection p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #444;
+    white-space: pre-line;
+}
+
 .projectFooter{
     margin-top: 40px;
     text-align: center;
