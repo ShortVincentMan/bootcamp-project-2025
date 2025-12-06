@@ -3,17 +3,18 @@ import connectDB from '@/database/db';
 import Blog from '@/database/blogSchema';
 
 type IParams = {
-    params: {
+    params: Promise<{
         slug: string;
-    };
+    }>;
 };
 
 export async function POST(req: NextRequest, { params }: IParams) {
+    const { slug } = await params;
+    await connectDB(); 
     try {
-        await connectDB(); // connect to MongoDB
+        
         const body = await req.json();
         // parse req (req is short for request btw) data
-        const { slug } = await params;
         const { user, content } = body;
 
         // validation for required fields

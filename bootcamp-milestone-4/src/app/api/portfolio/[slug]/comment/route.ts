@@ -7,20 +7,14 @@ type IParams = {
 };
 
 export async function POST(req: NextRequest, { params }: IParams) {
+            const { slug } = await params;
+    await connectDB(); // connect to MongoDB
     try {
-        await connectDB(); // connect to MongoDB
+        
         const body = await req.json();
         // parse req (req is short for request btw) data
-        const { slug } = await params;
-        const { user, content } = body;
 
-        // validation for required fields
-        if (!slug) {
-            return NextResponse.json(
-                { error: 'Missing portfolio slug' }, 
-                { status: 400 }
-            );
-        }
+        const { user, content } = body;
 
         if (!user || !content) {
             return NextResponse.json(
@@ -48,7 +42,7 @@ export async function POST(req: NextRequest, { params }: IParams) {
     }
     // If nothing appears in try, go to catch so webpage doesn't eat shit
     catch (error) {
-        console.error('Error adding comment')
+        console.error('Error adding comment', error);
         return NextResponse.json(
             { error: 'Error adding comment' }, 
             { status: 500 }
