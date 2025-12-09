@@ -3,6 +3,7 @@ import { Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import { Analytics } from "@vercel/analytics/next"
 
 // Make Geist Mono the default font site-wide
 const geistMono = Geist_Mono({ subsets: ["latin"] });
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Navbar />
         <main className="main">
           <div className="page-wrap">{children}</div>
+          < Analytics />
         </main>
         <Footer />
       </body>
